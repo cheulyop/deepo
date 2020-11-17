@@ -1,12 +1,10 @@
 # ==================================================================
 # module list
 # ------------------------------------------------------------------
-# python        3.8    (apt)
-# jupyter       latest (pip)
+# python        3.9    (apt)
 # onnx          latest (pip)
 # pytorch       latest (pip)
 # tensorflow    latest (pip)
-# jupyterlab    latest (pip)
 # ==================================================================
 
 FROM nvidia/cuda:10.2-cudnn8-devel-ubuntu18.04
@@ -53,15 +51,15 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
-        python3.8 \
-        python3.8-dev \
+        python3.9 \
+        python3.9-dev \
         python3-distutils-extra \
         && \
     wget -O ~/get-pip.py \
         https://bootstrap.pypa.io/get-pip.py && \
-    python3.8 ~/get-pip.py && \
-    ln -s /usr/bin/python3.8 /usr/local/bin/python3 && \
-    ln -s /usr/bin/python3.8 /usr/local/bin/python && \
+    python3.9 ~/get-pip.py && \
+    ln -s /usr/bin/python3.9 /usr/local/bin/python3 && \
+    ln -s /usr/bin/python3.9 /usr/local/bin/python && \
     $PIP_INSTALL \
         setuptools \
         && \
@@ -75,14 +73,6 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         matplotlib \
         Cython \
         tqdm \
-        && \
-
-# ==================================================================
-# jupyter
-# ------------------------------------------------------------------
-
-    $PIP_INSTALL \
-        jupyter \
         && \
 
 # ==================================================================
@@ -124,14 +114,6 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 
     $PIP_INSTALL \
         tensorflow \
-        && \
-
-# ==================================================================
-# jupyterlab
-# ------------------------------------------------------------------
-
-    $PIP_INSTALL \
-        jupyterlab \
         && \
 
 # ==================================================================
