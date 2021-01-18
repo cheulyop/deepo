@@ -7,7 +7,7 @@
 # tensorflow    latest (pip)
 # ==================================================================
 
-FROM nvidia/cuda:10.2-cudnn8-devel-ubuntu18.04
+FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
 ENV LANG C.UTF-8
 RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     PIP_INSTALL="python -m pip --no-cache-dir install --upgrade" && \
@@ -105,7 +105,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         typing \
         && \
     $PIP_INSTALL \
-        torch torchvision \
+        torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio===0.7.2 -f https://download.pytorch.org/whl/torch_stable.html \
         && \
 
 # ==================================================================
